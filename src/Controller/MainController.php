@@ -13,16 +13,16 @@ class MainController extends AbstractController
      */
     public function home(): Response
     {
-        echo "coucou";
+        echo "Homepage of site";
         die();
     }
 
     /**
-     * @Route("/test", name="main_home")
+     * @Route("/other", name="main_home")
      */
-    public function test(): Response
+    public function otherPage(): Response
     {
-        echo "Voici mon test";
+        echo "Other page of site";
         die();
     }
 }
