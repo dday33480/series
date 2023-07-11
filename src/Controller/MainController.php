@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
@@ -11,18 +10,16 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="main_home")
      */
-    public function home(): Response
+    public function home()
     {
-        echo "Homepage of site";
-        die();
+        return $this->render("main/home.html.twig");
     }
 
     /**
      * @Route("/other", name="main_home")
      */
-    public function otherPage(): Response
+    public function otherPage()
     {
-        echo "Other page of site";
-        die();
+        return $this->render("main/other.html.twig");
     }
 }
