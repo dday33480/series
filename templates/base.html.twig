@@ -4,22 +4,31 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{% block title %}Series!{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <link rel="icon" href="{{ asset('img/series-logo.jpg') }}">
 </head>
 <body>
-    <header>
-        <h1>Series!</h1>
-        {% include 'inc/nav.html.twig' %}    
-    </header>
+	<div class="container">
+		<header>
+			<h1><a href="{{ path('main_home')}}"><img src="{{asset('img/series-logo.jpg')}}" alt="Series!"></a></h1>
+			{% include 'inc/nav.html.twig' %}    
+		</header>
 
-    <main>
-        {% block body %}{% endblock %}
-    </main>
+		<main>
+			{% block body %}{% endblock %}
+		</main>
 
-    <footer>
-        {% include 'inc/nav.html.twig' %}
-        <div>&copy; {{ "now" | date("Y") }} Series!</div>
-    </footer>
-
+		<footer>
+			{% include 'inc/nav.html.twig' %}
+			<div>&copy; {{ "now" | date("Y") }} Series!</div>
+		</footer>
+	</div>
 
 
 </body>

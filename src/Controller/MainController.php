@@ -20,6 +20,13 @@ class MainController extends AbstractController
      */
     public function otherPage()
     {
-        return $this->render("main/other.html.twig");
+        $serie = [
+            "title" => "Game of Thrones",
+            "year" => 2012,
+        ];
+
+        return $this->render("main/other.html.twig", [
+            "mySerie" => $serie,
+        ]);
     }
 }
