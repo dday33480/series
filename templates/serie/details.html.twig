@@ -8,7 +8,14 @@
     <h2>
         {{ serie.name }}
     </h2>
-    <div>{{ serie.overview }}</div>
+    <article class="details_head">
+        <img src="{{ asset('img/posters/' ~ serie.poster) }}" alt="{{ serie.name }}">
+        <div>
+            <h2>OVERVIEW</h2>
+            <br>
+            <p>{{ serie.overview }}</p>
+        </div>
+    </article>    
     <div>{{ serie.vote }}</div>
 
     
