@@ -86,3 +86,7 @@ input, textarea, select {
 }
 
 
+form > div > div > ul > li {
+    color: red;
+}
+

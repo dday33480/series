@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SeriesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SeriesRepository::class)
@@ -19,21 +20,26 @@ class Series
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="This filed cannot be empty")
+     * @Assert\Length(max=255)
      */
     private $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(min=10)
      */
     private $overview;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Choice("Cancelled", "returning", "ended")
      */
     private $status;
 
     /**
      * @ORM\Column(type="decimal", precision=3, scale=1)
+     * @Assert\Range(min="0", max="10", notInRangeMessage="The range for your score is between 1 and 10 included")
      */
     private $vote;
 
@@ -54,6 +60,7 @@ class Series
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual(propertyPath="firstAirDate")
      */
     private $lastAirDate;
 
