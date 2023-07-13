@@ -2,6 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Series;
+use App\Repository\SerieRepository;
+use App\Repository\SeriesRepository;
+use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,13 +18,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class SerieController extends AbstractController
 {
     /**
-     * @Route("/", name="list")
+     * @Route("/list", name="list")
      */
-    public function list(): Response
+    public function list(SeriesRepository $serieRepo): Response
     {
-        //todo: get series from DB
+        //get series from DB
+        $series = $serieRepo->findBestSeries();
 
         return $this->render('serie/liste.html.twig', [
+            "series"=>$series
 
         ]);
     }
@@ -27,11 +34,14 @@ class SerieController extends AbstractController
     /**
      * @Route("/details/{id}", name="details")
      */
-    public function details(int $id): Response
+    public function details(int $id, SeriesRepository $serieRepo): Response
     {
-        //todo: Get serie from DB
+        //get serie from DB
+        $serie = $serieRepo->find($id);
 
-        return $this->render('serie/details.html.twig');
+        return $this->render('serie/details.html.twig', [
+        "serie"=>$serie
+        ]);
     }
 
     /**
@@ -42,6 +52,36 @@ class SerieController extends AbstractController
         //todo: Get serie from DB
 
         return $this->render('serie/create.html.twig');
+    }
+
+    /**
+     * @Route("/demo", name="demo")
+     */
+    public function addDemo(EntityManagerInterface $em): Response
+    {
+        //Create Entity instance
+        $serie = new Series();
+
+        //Hydrate all properties
+        $serie->setName('Game of Thrones');
+        $serie->setBackdrop('aaaa');
+        $serie->setPoster('img/the_good_doctor.jpg');
+        $serie->setDateCreated(new \DateTime());
+        $serie->setFirstAirDate(new \DateTime("- 12 years"));
+        $serie->setLastAirDate(new \DateTime("- 4 years"));
+        $serie->setGenres('fantasy');
+        $serie->setOverview('Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night\'s Watch, is all that stands between the realms of men and icy horrors beyond.');
+        $serie->setPopularity(100.00);
+        $serie->setVote(6.5);
+        $serie->setStatus('ended');
+        $serie->setTmdbId(1399);
+
+        dump($serie);
+
+        $em->persist($serie);
+        $em->flush();
+
+        return $this->render('serie/demo.html.twig');
     }
 }
 

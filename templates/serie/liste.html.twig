@@ -5,8 +5,14 @@ The best series | {{ parent() }}
 {% endblock %}
 
 {% block body %}
-    <section>
-        todo: Show series
+    <section class="series-list">
+        {% for serie in series %}
+        <article>
+            <a href="{{ path('serie_details', {'id': serie.id}) }}" title="View serie's details">
+                <img src="{{ asset('img/posters/' ~ serie.poster) }}" alt="{{ serie.name }}">        
+            </a>
+        </article>
+        {% endfor %}
     </section>
 
 {% endblock %}
