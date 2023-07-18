@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link rel="icon" href="{{ asset('img/series-logo.jpg') }}">
+
+	
 </head>
 <body>
+{% block extrastyles %}{% endblock %}
 	<div class="container">
 		<header>
 			<h1><a href="{{ path('main_home')}}"><img src="{{asset('img/series-logo.jpg')}}" alt="Series!"></a></h1>

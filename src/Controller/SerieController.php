@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Series;
 use App\Form\SerieType;
-use App\Repository\SerieRepository;
 use App\Repository\SeriesRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
@@ -28,7 +27,7 @@ class SerieController extends AbstractController
         $series = $serieRepo->findBestSeries();
 
         return $this->render('serie/liste.html.twig', [
-            "series"=>$series
+            "series" => $series
 
         ]);
     }
@@ -42,7 +41,7 @@ class SerieController extends AbstractController
         $serie = $serieRepo->find($id);
 
         return $this->render('serie/details.html.twig', [
-        "serie"=>$serie
+        "serie" => $serie
         ]);
     }
 
@@ -84,9 +83,20 @@ class SerieController extends AbstractController
     }
 
     /**
+     * @Route("/delete/{id}", name="delete")
+     */
+    public function delete(Series $serie, EntityManagerInterface $em)
+    {
+        $em->remove($serie);
+        $em->flush();
+
+        return $this->redirectToRoute('main_home');
+    }
+
+    /**
      * @Route("/demo", name="demo")
      */
-    public function addDemo(EntityManagerInterface $em): Response
+    /*public function addDemo(EntityManagerInterface $em): Response
     {
         //Create Entity instance
         $serie = new Series();
@@ -111,6 +121,6 @@ class SerieController extends AbstractController
         $em->flush();
 
         return $this->render('serie/demo.html.twig');
-    }
+    }*/
 }
 

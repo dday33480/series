@@ -5,18 +5,51 @@
 {% endblock %}
 
 {% block body %}
-    <h2>
-        {{ serie.name }}
-    </h2>
-    <article class="details_head">
-        <img src="{{ asset('img/posters/' ~ serie.poster) }}" alt="{{ serie.name }}">
+    
+    <div class="details-head">
         <div>
-            <h2>OVERVIEW</h2>
-            <br>
-            <p>{{ serie.overview }}</p>
+            <img src="{{ asset('img/posters/' ~ serie.poster) }}" alt="{{ serie.name }}">
         </div>
-    </article>    
-    <div>{{ serie.vote }}</div>
+        <div class="serie-details-infos">
+            <h2>{{ serie.name }}</h2>
+            <div>User ratings: {{ serie.vote }}</div>
+            <div>Category: {{ serie.genres }}</div>
+            <div>Status: {{ serie.status }}</div>
+            <div>Aired from: {{ serie.firstAirDate|date("Y-m-d") }} to {{ serie.lastAirDate|date("Y-m-d") }}</div>
+            <div>
+                <h2>OVERVIEW</h2>
+                <br>
+                <p>{{ serie.overview }}</p>
+            </div>
+        </div>
+    </div>
 
+    <section class="panel">
+        <h3>Seasons</h3>
+        <div class="season-card">
+            {% for season in serie.seasons %}
+            <div class="season-text">
+                <h4>Season {{ season.number }}</h4>
+            </div>
+            <div class="season-image">
+                <img src="{{ asset('img/posters/seasons/' ~ season.poster) }}" alt="{{ serie.name }} season # {{ season.number }}">
+            </div>
+            <div class="season-overview">
+                {% if season.overview %}
+                    {{ season.overview }}
+                {% endif %}
+            </div>    
+            {% endfor %}
+        </div>
+    </section>
+            
+{% endblock %}
+
+{% block extrastyles %}
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url("{{ asset('img/backdrops/' ~ serie.backdrop) }}");
+        }
+    </style>
     
 {% endblock %}
