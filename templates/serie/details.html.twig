@@ -21,9 +21,11 @@
                 <br>
                 <p>{{ serie.overview }}</p>
             </div>
+            {% if is_granted("ROLE_ADMIN") %}
             <div>
                 <button href="{{ path('serie_delete', {id: serie.id}) }}" class="btn-delete">Delete Serie</button>
             </div>
+            {% endif %}
         </div>
     </div>
 
