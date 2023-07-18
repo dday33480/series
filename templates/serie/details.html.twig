@@ -21,26 +21,29 @@
                 <br>
                 <p>{{ serie.overview }}</p>
             </div>
+            <div>
+                <button href="{{ path('serie_delete', {id: serie.id}) }}" class="btn-delete">Delete Serie</button>
+            </div>
         </div>
     </div>
 
     <section class="panel">
         <h3>Seasons</h3>
-        <div class="season-card">
             {% for season in serie.seasons %}
-            <div class="season-text">
-                <h4>Season {{ season.number }}</h4>
-            </div>
-            <div class="season-image">
-                <img src="{{ asset('img/posters/seasons/' ~ season.poster) }}" alt="{{ serie.name }} season # {{ season.number }}">
-            </div>
-            <div class="season-overview">
-                {% if season.overview %}
-                    {{ season.overview }}
-                {% endif %}
+            <div class="season-card">
+                <div class="season-text">
+                    <h4>Season {{ season.number }}</h4>
+                </div>
+                <div class="season-image">
+                    <img src="{{ asset('img/posters/seasons/' ~ season.poster) }}" alt="{{ serie.name }} season # {{ season.number }}">
+                </div>
+                <div class="season-overview">
+                    {% if season.overview %}
+                        {{ season.overview }}
+                    {% endif %}
+                </div>
             </div>    
             {% endfor %}
-        </div>
     </section>
             
 {% endblock %}

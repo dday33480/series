@@ -85,9 +85,10 @@ class SerieController extends AbstractController
     /**
      * @Route("/delete/{id}", name="delete")
      */
-    public function delete(Series $serie, EntityManagerInterface $em)
+    public function delete($id, EntityManagerInterface $em, SeriesRepository $serieRepo): Response
     {
-        $em->remove($serie);
+        $id = $serieRepo->find($id);
+        $em->remove($id);
         $em->flush();
 
         return $this->redirectToRoute('main_home');

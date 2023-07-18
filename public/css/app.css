@@ -103,4 +103,14 @@ form > div > div > ul > li {
     outline-width: 2px;
     outline-style: groove;
     outline-color: #EEE;
+    row-gap: 2px;
+}
+
+.btn-delete {
+    background-color: darkred;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: crimson;
 }
