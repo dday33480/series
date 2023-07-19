@@ -108,9 +108,30 @@ form > div > div > ul > li {
 
 .btn-delete {
     background-color: darkred;
+    border-radius: 15px;
+    padding: 2px;
+    border: 2px;
+    margin: 2px;
     color: white;
+    width: 150px;
+    font-weight: bold;
 }
 
 .btn-delete:hover {
     background-color: crimson;
+}
+
+.btn-create {
+    background-color: forestgreen;
+    border-radius: 15px;
+    padding: 2px;
+    border: 2px;
+    margin: 2px;
+    color: white;
+    width: 150px;
+    font-weight: bold;
+}
+
+.btn-create:hover {
+    background-color: springgreen;
 }
